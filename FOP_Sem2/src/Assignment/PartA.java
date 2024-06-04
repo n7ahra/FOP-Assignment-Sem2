@@ -72,7 +72,7 @@ public class PartA {
         return timestamp.compareTo(startTime) >= 0 && timestamp.compareTo(endTime) <= 0;
     }
 
-    // Method to display the results in a formatted table
+    // Method to display the results in a table
     private static void displayResults(int jobsCreated, int jobsCompleted, String startTime, String endTime) {
         System.out.println("Job Statistics from " + startTime + " to " + endTime);
         System.out.println("+----------------+-----------------+");
