@@ -2,7 +2,7 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 
-//	Average execution time of the jobs submitted to UMHPC
+//Average execution time of the jobs submitted to UMHPC
 class Job {
     String id;
     Date start;
