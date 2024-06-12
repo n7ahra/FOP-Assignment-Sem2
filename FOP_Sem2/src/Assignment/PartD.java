@@ -1,3 +1,5 @@
+package Assignment;
+
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -19,7 +21,7 @@ class Job {
 }
 
 public class PartD {
-    public static void main(String[] args) {
+    public static void displayTable() {
         Map<String, Job> jobs = new HashMap<>();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         long totalDuration = 0;

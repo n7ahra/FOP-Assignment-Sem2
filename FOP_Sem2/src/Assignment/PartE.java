@@ -116,7 +116,7 @@ import java.io.IOException;
 
 public class PartE {
     
-    public static void main(String[] args) {
+    public void Analyzer() {
         
         String filePath = "extracted_log";
 
@@ -171,11 +171,11 @@ public class PartE {
 
             // Print peak and least submission times
             System.out.println("PEAK AND LEAST SUBMISSION TIMES");
-            printPeakAndLeastTimes(submissionFrequency, "Job Submission Count", peakSubmissionTime, leastSubmissionTime);
+            displayTable(submissionFrequency, "Job Submission Count", peakSubmissionTime, leastSubmissionTime);
 
             // Print peak and least completion times
             System.out.println("\n\nPEAK AND LEAST COMPLETION TIMES");
-            printPeakAndLeastTimes(completionFrequency, "Job Completion Count", peakCompletionTime, leastCompletionTime);
+            displayTable(completionFrequency, "Job Completion Count", peakCompletionTime, leastCompletionTime);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -191,7 +191,7 @@ public class PartE {
     }
 
     //To print peak and least times in tabular format
-    private static void printPeakAndLeastTimes(int[] frequency, String label, int peakTime, int leastTime) {
+    public static void displayTable(int[] frequency, String label, int peakTime, int leastTime) {
         System.out.println(label + ":");
         System.out.println("-------------------------------");
         System.out.printf("%-15s | %-15s\n", "| Time Range", "Job Count   |");

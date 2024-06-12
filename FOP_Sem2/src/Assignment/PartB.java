@@ -3,37 +3,41 @@ package Assignment;
 import java.util.*;
 import java.io.*;
 
-class PartBMetrics {
+class PartB {
     protected String partitions;
 
-    public PartBMetrics(String partitions) {
+    public PartB(String partitions) {
         this.partitions = partitions;
+    }
+
+    PartB() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String toString() {
         return partitions;
     }
 
-    public static void main(String[] args) {
-        String filePath = "extracted_log";
-
-        try {
-            List<PartBMetrics> assignments = NParser.parseAssignmentB(filePath);
-            NParser.displayTable(assignments);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /*public static void main(String[] args) {
+    String logFile = "extracted_log";
+    
+    try {
+    List<PartB> assignments = NParser.parseAssignmentB(logFile);
+    NParser.displayTable(assignments);
+    } catch (IOException e) {
+    e.printStackTrace();
     }
+    }*/
 }
 
 
 class NParser {
-    public static List<PartBMetrics> parseAssignmentB(String filePath) throws IOException {
-        List<PartBMetrics> assignments = new ArrayList<>();
+    public static List<PartB> parseAssignmentB(String logFile) throws IOException {
+        List<PartB> assignments = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
-            reader = new BufferedReader(new FileReader(filePath));
+            reader = new BufferedReader(new FileReader(logFile));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -47,7 +51,7 @@ class NParser {
 
                             switch (key) {
                                 case "Partition":
-                                    assignments.add(new PartBMetrics(value));
+                                    assignments.add(new PartB(value));
                                     break;
                             }
                         }
@@ -64,14 +68,14 @@ class NParser {
         return assignments;
     }
 
-    public static void displayTable(List<PartBMetrics> assignments) {
+    public static void displayTable(List<PartB> assignments) {
         System.out.println("+-----------------------+");
         System.out.println("| Partition  | Count    |");
         System.out.println("+-----------------------+");
         
         // Count occurrences of each partition type
         Map <String, Integer> partitionCount = new HashMap<>();
-        for (PartBMetrics assignment : assignments) {
+        for (PartB assignment : assignments) {
             String partition = assignment.toString();
             partitionCount.put(partition, partitionCount.getOrDefault(partition, 0) + 1);
         }

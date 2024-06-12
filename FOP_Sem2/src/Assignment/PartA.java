@@ -14,41 +14,26 @@ import java.io.IOException;
 
 public class PartA {
 
-    public static void main(String[] args) {
+    public static int[] logReader() throws IOException {
+  
         String logFile = "extracted_log";
         String start = "2022-06-01T01:02:35.148";
         String end = "2022-12-16T14:55:46.311";
-
-        try {
-            //initialize array to display
-            int[] jobCounts = logReader(logFile, start, end);
-            int jobsCreated = jobCounts[0];
-            int jobsCompleted = jobCounts[1];
-            int jobsKilled=jobCounts[2];
-
-            //call display method
-            outcomeTable(jobsCreated, jobsCompleted, jobsKilled, start, end);
-        } catch (IOException e) {
-            System.out.println("Problem with file input.");
-        }
-    }
-
-    
-    private static int[] logReader(String logFile, String start, String end) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(logFile));
+        
         String line;
         int jobsCreated = 0;
         int jobsCompleted = 0;
         int jobsKilled=0;
-
+        
+        BufferedReader reader = new BufferedReader(new FileReader(logFile));
         while ((line = reader.readLine()) != null) {
-            //keyword check to indicate
+            //keyword check to indicate complete,create,kill
             if (line.contains("sched: Allocate")) {
                 String timestamp = timestamp(line);
                 if (checkTimerange(timestamp, start, end)) {
                     jobsCreated++;
                 }
-            // Check if the line indicates a job completion
+            
             } else if (line.contains("_job_complete: JobId=")) {
                 String timestamp = timestamp(line);
                 if (checkTimerange(timestamp, start, end)) {
@@ -77,10 +62,10 @@ public class PartA {
     }
 
     //method to display results
-    private static void outcomeTable (int jobsCreated, int jobsCompleted,int jobsKilled, String startTime, String endTime) {
+    public static void displayTable (int jobsCreated, int jobsCompleted,int jobsKilled, String start, String end) {
         System.out.println("+----------------+-----------------+");
         System.out.println("| Jobs Allocated | " + String.format("%15d", jobsCreated) + " |");
-         System.out.println("| Jobs Killed    | " + String.format("%15d", jobsKilled) + " |");
+        System.out.println("| Jobs Killed    | " + String.format("%15d", jobsKilled) + " |");
         System.out.println("| Jobs Completed | " + String.format("%15d", jobsCompleted) + " |");
         System.out.println("+----------------+-----------------+");
     }

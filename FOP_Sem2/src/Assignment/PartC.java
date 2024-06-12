@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package retake2024;
+package Assignment;
 
 /**
  *
@@ -12,15 +12,15 @@ import java.util.*;
 import java.io.*;
 
 public class PartC {
-    public static void main(String[] args) {
-        String logFilePath = "extracted_log"; // Path to your log file
+    public static void logAnalyzer() {
+        String logFile = "extracted_log"; // Path to your log file
 
         int errorCount = 0;
         String[] errorUsers = new String[1000]; // Array to store users, assuming max 1000 users for simplicity
         int[] errorCounts = new int[1000]; // Array to store error counts per user
         int userCount = 0;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(logFilePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(logFile))) {
             String line;
             while ((line = br.readLine()) != null) {
                 if (line.contains("error: This association")) {
@@ -54,7 +54,7 @@ public class PartC {
         System.out.printf("%-20s | %-15s%n", "User", "Number of Errors");
         System.out.println("---------------------|----------------");
         for (int i = 0; i < userCount; i++) {
-            System.out.printf("%-20s | %-15d%n", errorUsers[i], errorCounts[i]);
+        System.out.printf("%-20s | %-15d%n", errorUsers[i], errorCounts[i]);
         }
         System.out.println("---------------------|----------------");
         System.out.printf("%-20s | %-15d%n", "Total Errors", errorCount);
@@ -74,5 +74,13 @@ public class PartC {
         }
         return "unknown";
     }
-
+    /*public static void displayTablestatic(int userCount,String[] errorUsers,int[] errorCounts,int errorCount) {
+    System.out.printf("%-20s | %-15s%n", "User", "Number of Errors");
+    System.out.println("---------------------|----------------");
+    for (int i = 0; i < userCount; i++) {
+    System.out.printf("%-20s | %-15d%n", errorUsers[i], errorCounts[i]);
+    }
+    System.out.println("---------------------|----------------");
+    System.out.printf("%-20s | %-15d%n", "Total Errors", errorCount);
+    }*/
 }
